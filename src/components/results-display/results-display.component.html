@@ -1,0 +1,58 @@
+<div class="results-card card shadow p-4">
+  <h2 class="text-center mb-4">Votre Structure de Personnalité</h2>
+
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <h4 class="h6 text-muted text-uppercase mb-3">Énergie disponible par étage</h4>
+      <div class="condo-container">
+        <div *ngFor="let item of sortedPersonalities" class="floor-wrapper mb-2">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>{{ getLabel(item.type) }}</span>
+            <span class="fw-bold">{{ item.value }}%</span>
+          </div>
+          <div class="progress" style="height: 30px;">
+            <div class="progress-bar transition-all"
+                 [style.width.%]="item.value"
+                 [style.background-color]="getColor(item.type)"
+                 [class.is-base]="item.type === data.base"
+                 [class.is-phase]="item.type === data.phase">
+              <span *ngIf="item.type === data.base" class="badge-text">BASE</span>
+              <span *ngIf="item.type === data.phase" class="badge-text ms-2">PHASE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="summary-section mb-4">
+        <div class="p-3 rounded border-start border-5 mb-3" [style.border-color]="getColor(data.base)">
+          <h5 class="h6 mb-1">Votre Base : <strong>{{ getLabel(data.base) }}</strong></h5>
+          <p class="small text-muted mb-0">C'est votre mode de communication naturel et la façon dont vous percevez le monde.</p>
+        </div>
+
+        <div class="p-3 rounded border-start border-5 mb-3" [style.border-color]="getColor(data.phase)">
+          <h5 class="h6 mb-1">Votre Phase actuelle : <strong>{{ getLabel(data.phase) }}</strong></h5>
+          <p class="small text-muted mb-0">C'est votre moteur de motivation actuel et votre zone de stress sous pression.</p>
+        </div>
+      </div>
+
+      <div *ngIf="data.livedPhases.length > 0" class="lived-phases mb-4">
+        <h5 class="h6 text-muted text-uppercase small">Phases déjà intégrées :</h5>
+        <div class="d-flex flex-wrap gap-2">
+          <span *ngFor="let lp of data.livedPhases"
+                class="badge rounded-pill"
+                [style.background-color]="getColor(lp)">
+            {{ getLabel(lp) }}
+          </span>
+        </div>
+      </div>
+
+      <div class="alert alert-info small">
+        <strong>Conseil de manager :</strong>
+        Pour motiver un profil en phase <strong>{{ getLabel(data.phase) }}</strong>,
+        misez sur : <em>{{ getDescription(data.phase) }}</em>.
+      </div>
+    </div>
+  </div>
+</div>
