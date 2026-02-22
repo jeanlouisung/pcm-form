@@ -84,3 +84,32 @@
   cursor: grab;
   color: #cbd5e0;
 }
+
+.answer-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: #f8fbff;
+    transform: translateX(5px); // Petit décalage pour l'effet de sélection
+  }
+
+  &.is-selected {
+    background-color: #ffffff;
+    border-left: 4px solid #00AEEF;
+    font-weight: 500;
+  }
+
+  &.not-selected {
+    opacity: 0.6;
+    &:hover { opacity: 1; }
+  }
+}
+
+.status-dot {
+  transition: transform 0.3s;
+  &.active {
+    transform: scale(1.3);
+  }
+}

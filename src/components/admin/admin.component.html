@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-header bg-dark text-white p-4">
+      <h2 class="mb-0">⚙️ Administration du Questionnaire</h2>
+    </div>
+    <div class="card-body p-5">
+      <div class="row align-items-center mb-5">
+        <div class="col-md-8">
+          <h4>Structure actuelle</h4>
+          <p class="text-muted">Le questionnaire contient actuellement <strong>{{ currentQuestionsCount }}</strong> questions.</p>
+        </div>
+        <div class="col-md-4 text-end">
+          <button (click)="resetDefault()" class="btn btn-outline-danger">Réinitialiser par défaut</button>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="mt-5">
+        <h4>Importer de nouvelles questions</h4>
+        <p>Le fichier doit être un CSV (séparateur point-virgule) avec les colonnes dans l'ordre suivant : ID, Question, puis les 6 types de personnalité.</p>
+
+        <p>Dans cet ordre là id;question;ANALYSEUR;EMPATHIQUE;PERSÉVÉRANT;REBELLE;PROMOTEUR;IMAGINEUR</p>
+        <p>Les questions 1 à 10 sont des questions de la base, les questions 11 à 20 sont des questions de l'étape, les questions 21 à 30 sont des questions de la phase.</p>
+
+        <div class="d-flex gap-3 mt-4">
+          <label class="btn btn-primary btn-lg">
+            📁 Sélectionner le CSV
+            <input type="file" (change)="onUploadQuestions($event)" accept=".csv" class="d-none">
+          </label>
+
+          <button (click)="downloadTemplate()" class="btn btn-light btn-lg border">
+            📥 Télécharger le modèle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 text-center">
+    <a routerLink="/quizz" class="btn btn-link">← Retourner au Quizz</a>
+  </div>
+</div>

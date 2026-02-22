@@ -38,12 +38,21 @@ export class QuizzComponent implements OnInit {
   constructor(private calculator: PcmComputeResultService) {}
 
   ngOnInit(): void {
-    const savedProgress = this.loadFromLocalStorage();
+    const customQuestions = localStorage.getItem('pcm_custom_questions');
+    const savedProgress = localStorage.getItem('pcm_quizz_progress');
 
     if (savedProgress) {
-      this.questions = savedProgress;
+      this.questions = JSON.parse(savedProgress);
     } else {
-      this.initQuizz();
+      // Si des questions custom existent, on les prend, sinon le PCM_FORM
+      const source = customQuestions ? JSON.parse(customQuestions) : PCM_FORM;
+
+      this.questions = source.map((q: any) => ({
+        ...q,
+        answers: [...q.answers]
+          .sort(() => Math.random() - 0.5) // Toujours mélanger pour l'utilisateur
+          .map((a: any) => ({ ...a, selected: false }))
+      }));
     }
   }
 
@@ -67,17 +76,45 @@ export class QuizzComponent implements OnInit {
     this.saveToLocalStorage();
   }
 
+  /**
+   * Action lorsqu'on clique sur la ligne entière (Promotion)
+   */
   selectAndPromote(questionIndex: number, answerIndex: number) {
-    const answer = this.questions[questionIndex].answers[answerIndex];
+    const question = this.questions[questionIndex];
+    const answer = question.answers[answerIndex];
+
+    // Si elle n'est pas sélectionnée, on l'active
     answer.selected = true;
-    moveItemInArray(this.questions[questionIndex].answers, answerIndex, 0);
+
+    // On la propulse tout en haut (index 0)
+    if (answerIndex > 0) {
+      moveItemInArray(question.answers, answerIndex, 0);
+    }
+
     this.saveToLocalStorage();
   }
 
+  /**
+   * Action spécifique sur le bouton Ajouter/Retirer
+   */
   toggleSelection(questionIndex: number, answerIndex: number, event: Event) {
-    event.stopPropagation();
-    this.questions[questionIndex].answers[answerIndex].selected =
-      !this.questions[questionIndex].answers[answerIndex].selected;
+    event.stopPropagation(); // Empêche de déclencher selectAndPromote en double
+
+    const question = this.questions[questionIndex];
+    const answer = question.answers[answerIndex];
+
+    // On inverse l'état
+    answer.selected = !answer.selected;
+
+    if (answer.selected) {
+      // AJOUTER : On met tout en haut
+      moveItemInArray(question.answers, answerIndex, 0);
+    } else {
+      // RETIRER : On met tout en bas
+      // (index = longueur du tableau - 1)
+      moveItemInArray(question.answers, answerIndex, question.answers.length - 1);
+    }
+
     this.saveToLocalStorage();
   }
 

@@ -21,13 +21,9 @@
       <h1 class="display-4 fw-bold">Test de Personnalité PCM</h1>
       <p class="lead text-muted">Sélectionnez et classez les affirmations pour chaque question.</p>
     </div>
-
     <div *ngFor="let q of questions; let i = index" class="quizz-card mb-5 shadow-sm">
       <div class="quizz-header mb-3">
-        <div class="d-flex align-items-center">
-          <div class="question-number me-3">Q{{ i + 1 }}</div>
-          <h3 class="h5 mb-0 fw-bold">{{ q.question }}</h3>
-        </div>
+        <h3 class="h5 fw-bold"><span class="text-primary">#{{ i + 1 }}</span> {{ q.question }}</h3>
       </div>
 
       <div cdkDropList
@@ -37,8 +33,9 @@
         <div *ngFor="let a of q.answers; let idx = index"
              cdkDrag
              class="answer-item d-flex align-items-center"
+             [class.is-selected]="a.selected"
              [class.not-selected]="!a.selected"
-             (click)="selectAndPromote(i, idx)">
+             (click)="a.selected ? toggleSelection(i, idx, $event) : selectAndPromote(i, idx)">
 
           <div class="status-dot" [class.active]="a.selected"></div>
 
@@ -48,13 +45,14 @@
 
           <div class="actions d-flex align-items-center">
             <button type="button"
-                    class="btn btn-action ms-2"
+                    class="btn-action"
                     (click)="toggleSelection(i, idx, $event)"
-                    [class.is-active]="a.selected">
+                    [class.active]="a.selected">
               {{ a.selected ? 'Retirer' : 'Ajouter' }}
             </button>
+
             <div class="drag-handle ms-3" cdkDragHandle *ngIf="a.selected">
-              <span class="grip">⠿</span>
+              ⠿
             </div>
           </div>
 
