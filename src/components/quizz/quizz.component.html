@@ -21,6 +21,41 @@
       <h1 class="display-4 fw-bold">Test de Personnalité PCM</h1>
       <p class="lead text-muted">Sélectionnez et classez les affirmations pour chaque question.</p>
     </div>
+
+    <div class="instruction-box card border-info mb-5 shadow-sm">
+      <div class="card-header bg-info text-white d-flex align-items-center">
+        <i class="bi bi-info-circle-fill me-2"></i>
+        <h3 class="h5 mb-0">Mode d'emploi : Comment compléter votre profil ?</h3>
+      </div>
+      <div class="card-body bg-light">
+        <div class="row">
+          <div class="col-md-4 border-end">
+            <div class="d-flex mb-3">
+              <span class="step-number me-2">1</span>
+              <p class="small mb-0"><strong>Lisez la question</strong> et les 6 propositions de réponses attentivement.</p>
+            </div>
+          </div>
+          <div class="col-md-4 border-end">
+            <div class="d-flex mb-3">
+              <span class="step-number me-2">2</span>
+              <p class="small mb-0"><strong>Sélectionnez vos préférences</strong>. La première réponse cliquée doit être celle qui vous ressemble le plus. Si les réponses ne vous correspondent pas, ne les sélectionnez pas. Vous ne pouvez sélectionner que 5 réponses maximum par question.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex mb-3">
+              <span class="step-number me-2">3</span>
+              <p class="small mb-0"><strong>L'ordre compte :</strong> Les réponses s'empilent. Les réponses non sélectionnées seront considérées comme celles qui vous ressemblent le moins.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-warning mb-0 py-2 mt-2">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <span class="small">Il n'y a pas de "bonne" ou "mauvaise" réponse. Soyez le plus spontané possible pour un résultat fidèle.</span>
+        </div>
+      </div>
+    </div>
+
     <div *ngFor="let q of questions; let i = index" class="quizz-card mb-5 shadow-sm">
       <div class="quizz-header mb-3">
         <h3 class="h5 fw-bold"><span class="text-primary">#{{ i + 1 }}</span> {{ q.question }}</h3>
