@@ -3,7 +3,7 @@ import { Personality, PcmQuestion } from '../models/pcm.model';
 export const PCM_OFFICIAL_DATA: PcmQuestion[] = [
   {
     id: 'base1',
-    question: "Quand vous étiez enfant ou adolescent, on vous aurait plutôt décrit comme :",
+    question: "Quand vous étiez enfant, on vous aurait plutôt décrit comme :",
     answers: [
       { id: 'base1-anal', type: Personality.ANALYSEUR, label: "Curieux et méthodique — vous aimiez comprendre comment les choses fonctionnent." },
       { id: 'base1-empa', type: Personality.EMPATHIQUE, label: "Sociable et attentionné — vous aviez besoin de vous sentir aimé et intégré." },
@@ -27,7 +27,7 @@ export const PCM_OFFICIAL_DATA: PcmQuestion[] = [
   },
   {
     id: 'base3',
-    question: "Lors d'une réunion, votre priorité est :",
+    question: "Lors d'une réunion, ce que vous préférez :",
     answers: [
       { id: 'base3-anal', type: Personality.ANALYSEUR, label: "L'ordre du jour, les chiffres et les faits." },
       { id: 'base3-empa', type: Personality.EMPATHIQUE, label: "La cohésion et l'ambiance du groupe." },
@@ -114,11 +114,11 @@ export const PCM_OFFICIAL_DATA: PcmQuestion[] = [
     question: "Face à une décision urgente, vous avez tendance à :",
     answers: [
       { id: 'base10-anal', type: Personality.ANALYSEUR, label: "Analyser les faits et les données." },
-      { id: 'base10-empa', type: Personality.EMPATHIQUE, label: "Consulter les personnes concernées." },
+      { id: 'base10-empa', type: Personality.EMPATHIQUE, label: "Privilégier le ressenti des personnes concernées." },
       { id: 'base10-pers', type: Personality.PERSÉVÉRANT, label: "Vérifier la cohérence avec vos principes et vos valeurs." },
       { id: 'base10-ener', type: Personality.ENERGISEUR, label: "Vous reposer sur votre instinct." },
       { id: 'base10-prom', type: Personality.PROMOTEUR, label: "Vous orienter sur ce que ça va rapporter concrètement et l'opportunité que ça représente." },
-      { id: 'base10-imag', type: Personality.IMAGINEUR, label: "Prendre du temps seul avant de répondre" }
+      { id: 'base10-imag', type: Personality.IMAGINEUR, label: "Prendre du temps seul avant de répondre." }
     ]
   },
   {

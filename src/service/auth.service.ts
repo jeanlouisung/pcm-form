@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly SECRET_PASSWORD = 'emilie'; // Ton mot de passe ici
+  private readonly SECRET_PASSWORD = 'ProcessCompta'; // Ton mot de passe ici
 
   login(password: string): boolean {
     if (password === this.SECRET_PASSWORD) {
