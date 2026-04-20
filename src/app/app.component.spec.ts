@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'pcm-form' title`, () => {
+  it(`should have the 'pcm-dec' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pcm-form');
+    expect(app.title).toEqual('pcm-dec');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pcm-form');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pcm-dec');
   });
 });

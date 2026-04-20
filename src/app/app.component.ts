@@ -12,5 +12,5 @@ import { PcmComputeResultService } from '../service/pcm-compute-result.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'pcm-form';
+  title = 'pcm-dec';
 }
